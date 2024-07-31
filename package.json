@@ -11,8 +11,12 @@
     "serve": "serve -s dist -p 80"
   },
   "dependencies": {
+    "axios": "^1.7.2",
+    "card-react": "^1.2.7",
     "react": "^18.3.1",
+    "react-credit-cards-2": "^1.0.2",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.25.1",
     "serve": "^14.2.3"
   },
   "devDependencies": {
