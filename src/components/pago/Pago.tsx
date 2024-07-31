@@ -1,26 +1,20 @@
 import React, { useState } from 'react';
 import "./Pago.css"
-// import CardReactFormContainer from 'card-react';
-import Card from 'react-credit-cards-2';
+import Card, { Focused } from 'react-credit-cards-2';
 import 'react-credit-cards-2/dist/es/styles-compiled.css';
 
-
-// function Pago({name, lol}){
-//     console.log(name)
-//     console.log(lol)
-function Pago({namee}){
-  const [cardInfo, setCardInfo] = useState({
-    number: '',
-    name: '',
-    expiryYear: '',
-    expiryMonth: '',
-    cvc: '',
-  });
-
-  const handleInputChangee = (e:any) => {
-    const { name, value } = e.target;
-    setCardInfo({ ...cardInfo, [name]: value });
-  };
+function Pago(){
+  // const [cardInfo, setCardInfo] = useState({
+  //   number: '',
+  //   name: '',
+  //   expiryYear: '',
+  //   expiryMonth: '',
+  //   cvc: '',
+  // });
+  // const handleInputChangee = (e:React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = e.target;
+  //   setCardInfo({ ...cardInfo, [name]: value });
+  // };
   
   const [state, setState] = useState({
     number: '',
@@ -30,21 +24,15 @@ function Pago({namee}){
     focus: "",
   });
 
-  const handleInputChange = (evt) => {
+  const handleInputChange = (evt:React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = evt.target;
-    
     setState((prev) => ({ ...prev, [name]: value }));
   }
 
-  const handleInputFocus = (evt) => {
+  const handleInputFocus = (evt:React.FocusEvent<HTMLInputElement>) => {
     setState((prev) => ({ ...prev, focus: evt.target.name }));
   }
-
-  // const sendPago = (event: React.MouseEvent<HTMLButtonElement>):String => {
-  //   console.log(state)
-  //   return "refff";
-  // }
-
+  
   const sendPago = ():String => {
       console.log(state)
       return "refff";
@@ -58,9 +46,9 @@ function Pago({namee}){
         expiry={state.expiry}
         cvc={state.cvc}
         name={state.name}
-        focused={state.focus}
+        focused={state.focus as Focused}
       />
-      <form >
+      <form>
         <input
           type="text"
           name="name"

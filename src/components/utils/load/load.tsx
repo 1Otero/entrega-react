@@ -1,4 +1,4 @@
-const load= ({loading, setLoad}) => {
+const load= ({loading}:{loading:Boolean, setLoad:Function}) => {
   console.log(loading)
   return <>
     <div>
