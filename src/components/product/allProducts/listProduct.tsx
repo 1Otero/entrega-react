@@ -3,7 +3,6 @@ import Product from '../../../model/product/product'
 import { useEffect, useState } from 'react'
 
 const listCardProduct= new Array()
-//function listProduct({sendProductCard, productCard, listProduct, setLoad, load, alertGlobal, setAlertGlobal, setListProduct}:{sendProductCard:Function, productCard:Product[], listProduct:Product[], setLoad:Function, load:Boolean, alertGlobal: {status: Boolean, message: String, type: String}, setAlertGlobal:Function, setListProduct:Function}){
 function listProduct({sendProductCard, listProduct, setLoad, load, setAlertGlobal }:{sendProductCard:Function, listProduct:Product[], setLoad:Function, load:Boolean, setAlertGlobal:Function}){
     const [product, setProduct]= useState<Product>({
       _id: '',

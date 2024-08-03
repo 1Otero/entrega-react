@@ -62,7 +62,6 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
   useEffect(() => {
    async function ejecutarAccept() {
     const acceptConfirm= await getAccept()
-    console.log(acceptConfirm)
     const jsonConfirm= Object.assign(acceptConfirm)
     const acceptConfirmTok= jsonConfirm.acceptanceToken
     setRutaPdf(await jsonConfirm.permaLink)
