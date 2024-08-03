@@ -1,12 +1,9 @@
 import Product from "../../../model/product/product";
 
-//ver si guardar en redux o devolver hasta el card
-//function cardProduct({product, setProduct, productCard, setCount, count, alertGlobal, setAlertGlobal, setProductRef, productRef}:{product:Product, setProduct:Function, productCard:Product[], setLoad:Function, load:Boolean, setCount:Function, count:number, alertGlobal: {status: Boolean, message: String, type: String}, setAlertGlobal:Function, setProductRef:Function, productRef:Product}){
 function cardProduct({product, setProduct, productCard, setCount, count, setAlertGlobal, productRef}:{product:Product, setProduct:Function, productCard:Product[], setLoad:Function, load:Boolean, setCount:Function, count:number, setAlertGlobal:Function, productRef:Product}){
 
     function add(){
       const ref= {...productCard, product}
-      console.log(ref)
       setProduct(product)
       // sendProductCard2({...productCard2, [`${_id}`]:product})
       //sendProductCard2((prev:Record<string, Object>) => ({...productCard2, [`${_id}`]:{ ... prev[`${_id}`], cantidad: (prev[`${_id}`].cantidad || 0) +  }}))
@@ -16,16 +13,7 @@ function cardProduct({product, setProduct, productCard, setCount, count, setAler
     }
     return <>
      <div>
-      {/* <div>
-        <h2>{name}</h2>    
-        <p>{description}</p>
-        <input type="number" min={0} max={product.cantidad as number} pattern={`\d{${0},${product.cantidad}}`}
-        onChange={(e) => {
-          product.cantidad= Number(e.target.value)
-        }} placeholder="cantidad"/>
-        <button onClick={add}>add card</button>
-      </div> */}
-
+      
 <div className="m-2 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
         <img className="rounded-t-lg" src="/productnotfound.png" alt="product not found" />
