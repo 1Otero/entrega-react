@@ -1,5 +1,5 @@
 const env= {
   //API: "http://localhost:8082"
-  API: "http://3.83.132.30"
+  API: "https://entreganode.netlify.app"
 }
 export default env
