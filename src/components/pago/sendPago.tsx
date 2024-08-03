@@ -5,9 +5,7 @@ import pay from "../../model/pago/pago"
 //function sendPago(tokenAccept:String, tokenTarjeta:String){
 async function sendPago(_pay:pay){
   const {acceptance_token, payment_method, amount_in_cents, infoCarrito, currency, customer_email, customer_data, signature, reference}= _pay
-  console.log(payment_method)
   const token= payment_method.token
-  console.log(token)
     const bodyPay= await axios.post(`${u.API}/pago/sendmepago`, {   
       acceptance_token,
       infoCarrito,
@@ -32,7 +30,6 @@ async function sendPago(_pay:pay){
     })
     if(!bodyPay) return null 
     const pay= bodyPay?.data
-    console.log(pay)
     return pay
 }
 export default sendPago

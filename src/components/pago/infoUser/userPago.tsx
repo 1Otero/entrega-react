@@ -4,7 +4,6 @@ import Select from 'react-select'
 function userPago({user, setUser, urlPdfAccept, setIsAccepted, isAccepted}:{user:infoUser, setUser:Function, urlPdfAccept:String, setIsAccepted:Function,isAccepted:Boolean}){
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>){
       const {name, value}= event.target
-      console.log(user)
       setUser((prev: any) => {
         return {...prev, [name]: value}})
     }
@@ -16,7 +15,6 @@ function userPago({user, setUser, urlPdfAccept, setIsAccepted, isAccepted}:{user
       label: "CC"   
     }]
     function changeTypeDoc(e: any){
-        console.log(e) 
         const valueType= e.value
         setUser((prev: any) => {
           return {...prev, legal_id_type: valueType}

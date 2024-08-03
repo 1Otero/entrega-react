@@ -23,8 +23,6 @@ async function getAccept(){
   return null
  })
  const jsonAccept= acceptStore?.data
- console.log("acceptStore: ")
- console.log(jsonAccept)
  //const accept= jsonAccept.success.acceptanceToken
  const body= jsonAccept.success
  return body
@@ -38,7 +36,6 @@ async function getTokTarjeta(infoTarjeta:{number: String, expiry: String, cvc: S
   })
   const body= await tokBody?.data.success
   const tok= body.id
-  console.log(tok)
   return tok;
 }
 
@@ -65,12 +62,9 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
   useEffect(() => {
    async function ejecutarAccept() {
     const acceptConfirm= await getAccept()
-    console.log(acceptConfirm)
     const jsonConfirm= Object.assign(acceptConfirm)
     const acceptConfirmTok= jsonConfirm.acceptanceToken
     setRutaPdf(await jsonConfirm.permaLink)
-    console.log(rutaPdf)
-    console.log(jsonConfirm)
     //acceptanceToken
     setInfoTarjeta({...infoTarjeta, acceptConfirm: acceptConfirmTok})
    }
@@ -88,7 +82,6 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
   useEffect(() => {
     if(infoTarjeta.toktarjeta){
       async function puying(){
-        console.log("entro bodyPay: ")
         //let {acceptConfirm, email, toktarjeta, cvc, expiry, focus, name, number}= Object.assign(state, infoTarjeta)
         let {acceptConfirm, email, toktarjeta }= Object.assign(state, infoTarjeta)
         let amount_in_cents= 160000
@@ -101,8 +94,6 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
           setShowCart(false)
           setLoad(false)
           setAlertGlobal({status: true, message: "su pago se realizo satisfactoriamente", type: 'green'})
-          console.log("bodyPay: ")
-          console.log(bodyPay)
           setProductCard([])
           return
         }
@@ -118,7 +109,6 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
   const sendPago = () => {
     if(state.number.length > 11 && state.cvc.length > 2 && isAccepted){
       setLoad(true)
-      console.log(state)
       //se verifica la tarjeta, y se retorna tokenTarjeta
       // useEffect(() => {
         
@@ -128,7 +118,6 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
         setInfoTarjeta((prev:any) => {
           return {...prev, toktarjeta}
         })
-        console.log(toktarjeta)
         if(!toktarjeta || toktarjeta.length < 0){
           setIsGoodTok(false)
         }
@@ -136,41 +125,14 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
         setTokenTarjeta(toktarjeta)
       }
       getTokTarjetaPago()
-      //aqui se senvia acceptStore y token tarjeta 
-      console.log(Object.assign(state, infoTarjeta))
-      //enviar pago
-      console.log(infoTarjeta.toktarjeta) 
-      console.log(isGoodTok) 
-      //Esto se puede descomentar
-      // if(infoTarjeta.toktarjeta){
-      //   async function puying(){
-      //     console.log("entro bodyPay: ")
-      //     //let {acceptConfirm, email, toktarjeta, cvc, expiry, focus, name, number}= Object.assign(state, infoTarjeta)
-      //     let {acceptConfirm, email, toktarjeta }= Object.assign(state, infoTarjeta)
-      //     let amount_in_cents= 160000
-      //     let reference= "lol"
-      //     let signature= "refff"
-      //     let currency= "COP"
-      //     let cardType= "CARD"
-      //     console.log("infoCarrito: ")
-      //     console.log(infoCarrito)
-      //     const bodyPay= await finalizarPago({acceptance_token:acceptConfirm as string, amount_in_cents, currency, customer_data: user, customer_email: email, infoCarrito: {listProduct:infoCarrito}, payment_method: {installments: 1, type: cardType, token: toktarjeta as string}, reference, signature})
-      //     console.log("bodyPay: ")
-      //     console.log(bodyPay)
-      //   }
-      //   console.log("token aceptadoooooooo")
-      //   puying()  
-      //   return "successfully";
-      // }
+      
       if(!isGoodTok){
-        console.log("salio y no valido tarjeta")
         setAlertGlobal({status: true, message: 'debe validar los datos de su tarjeta, valide la informacion de usuario', type: 'yellow'})
         return
       }
       setAlertGlobal({status: true, message: 'su compra se esta realizando', type: 'orange'})
       return
     }
-    console.log("debe validar los datos de su tarjeta, valide la informacion de usuario")
     setAlertGlobal({status: true, message: 'debe validar los datos de su tarjeta, valide la informacion de usuario', type: 'yellow'})
     return
   }

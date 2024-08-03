@@ -2,7 +2,7 @@ import { useEffect } from "react"
 
 const load= ({loading}:{loading:Boolean}) => {
   useEffect(() => {
-    console.log("change")
+    console.log("changing....")
   }, [loading])
   return <>
     <div className="fixed inset-0 bg-transparent z-1 w-full h-full flex flex-wrap justify-center items-center">
