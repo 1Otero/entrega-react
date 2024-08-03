@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <div className='w-5/6'>
-      <div>
+      <div className='mb-1'>
        <Head />
       </div>
       <button onClick={() => setShowCart(!showCart)} className={`${!showCart?"bg-green-400":"bg-red-500"} p-2`}>
@@ -28,7 +28,7 @@ function App() {
        <AlertGlobal infoAlert={alertGlobal} setAlertGlobal={setAlertGlobal} />
       </div>
       {
-        showCart?<div className='bg-gray-300 p-5'>
+        showCart?<div className='bg-gray-300 p-5 m-2'>
         <Card cardProduct={productCard} setLoad={setLoad} setAlertGlobal={setAlertGlobal} setShowCart={setShowCart} setProductCard={setProductCard}/> 
        </div>:<div></div>
       }
