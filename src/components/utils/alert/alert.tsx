@@ -1,7 +1,7 @@
 function AlertGlobal({infoAlert, setAlertGlobal}:{infoAlert:{status: Boolean, message: String, type: String}, setAlertGlobal:Function}){
   setTimeout(() => {
    setAlertGlobal({status: false, message: '', type: 'red'})
-  }, 1900)  
+  }, 2300)  
   return <>
     {infoAlert.status?<header className="flex flex-wrap justify-center items-center">
         <div className={`bg-${infoAlert.type}-500 p-2 text-lg text-white w-full`}>
