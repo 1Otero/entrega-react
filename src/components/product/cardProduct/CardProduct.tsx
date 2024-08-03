@@ -1,9 +1,8 @@
 import Product from "../../../model/product/product";
 
-function cardProduct({product, setProduct, productCard, setCount, count, setAlertGlobal, productRef}:{product:Product, setProduct:Function, productCard:Product[], setLoad:Function, load:Boolean, setCount:Function, count:number, setAlertGlobal:Function, productRef:Product}){
+function cardProduct({product, setProduct, setCount, count, setAlertGlobal, productRef}:{product:Product, setProduct:Function, setLoad:Function, load:Boolean, setCount:Function, count:number, setAlertGlobal:Function, productRef:Product}){
 
     function add(){
-      const ref= {...productCard, product}
       setProduct(product)
       // sendProductCard2({...productCard2, [`${_id}`]:product})
       //sendProductCard2((prev:Record<string, Object>) => ({...productCard2, [`${_id}`]:{ ... prev[`${_id}`], cantidad: (prev[`${_id}`].cantidad || 0) +  }}))

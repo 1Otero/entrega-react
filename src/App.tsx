@@ -38,7 +38,7 @@ function App() {
       </div>
       <Routes>
         {/* <Route path='/payment' element={<Pago />}/> */}
-        <Route path='/' element={<Products setAlertGlobal={setAlertGlobal} productCard={productCard} sendProductCard={setProductCard} setLoad={setLoad} load={loading} />} />
+        <Route path='/' element={<Products setAlertGlobal={setAlertGlobal} sendProductCard={setProductCard} setLoad={setLoad} load={loading} />} />
       </Routes>
       </div>
     </>

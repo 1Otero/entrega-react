@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 const listCardProduct= new Array()
 //function listProduct({sendProductCard, productCard, listProduct, setLoad, load, alertGlobal, setAlertGlobal, setListProduct}:{sendProductCard:Function, productCard:Product[], listProduct:Product[], setLoad:Function, load:Boolean, alertGlobal: {status: Boolean, message: String, type: String}, setAlertGlobal:Function, setListProduct:Function}){
-function listProduct({sendProductCard, productCard, listProduct, setLoad, load, setAlertGlobal }:{sendProductCard:Function, productCard:Product[], listProduct:Product[], setLoad:Function, load:Boolean, setAlertGlobal:Function}){
+function listProduct({sendProductCard, listProduct, setLoad, load, setAlertGlobal }:{sendProductCard:Function, listProduct:Product[], setLoad:Function, load:Boolean, setAlertGlobal:Function}){
     const [product, setProduct]= useState<Product>({
       _id: '',
       name: '',
@@ -61,7 +61,7 @@ function listProduct({sendProductCard, productCard, listProduct, setLoad, load, 
       <div className='flex flex-wrap justify-center'>
       { listProduct.map((p) => (
         <>
-        <CardProduct key={p._id as string} setAlertGlobal={setAlertGlobal} setProduct={setProduct} product={product} productRef={p} setLoad={setLoad} productCard={productCard} load={load} count={count} setCount={setCount} />
+        <CardProduct key={p._id as string} setAlertGlobal={setAlertGlobal} setProduct={setProduct} product={product} productRef={p} setLoad={setLoad} load={load} count={count} setCount={setCount} />
         {/* <button onClick={tst}>lol</button> */}
         </>
       ))}
