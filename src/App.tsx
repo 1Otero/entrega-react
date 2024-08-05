@@ -8,12 +8,15 @@ import Head from "./components/utils/head/head.tsx"
 import Card from "./components/card/card.tsx"
 import Product from './model/product/product.tsx'
 import AlertGlobal from './components/utils/alert/alert.tsx'
+import AllTransation from './components/transations/AllTransations.tsx'
 
 function App() {
   const [loading, setLoad]= useState(false)
+  const [isPago, setIsPago]= useState(false)
   const [showCart, setShowCart]= useState(false)
   const [productCard, setProductCard]= useState<Product[]>([])
   const [alertGlobal, setAlertGlobal]= useState<{status: Boolean, message: String, type: String}>({status: false, message: '', type: ''})
+  const [viewTransation, setViewTransation]= useState(true)
   
   return (
     <>
@@ -29,16 +32,17 @@ function App() {
       </div>
       {
         showCart?<div className='bg-gray-300 p-5 m-2'>
-        <Card cardProduct={productCard} setLoad={setLoad} setAlertGlobal={setAlertGlobal} setShowCart={setShowCart} setProductCard={setProductCard}/> 
+        <Card setViewTransation={setViewTransation} isPago={isPago} setIsPago={setIsPago} cardProduct={productCard} setLoad={setLoad} setAlertGlobal={setAlertGlobal} setShowCart={setShowCart} setProductCard={setProductCard}/> 
        </div>:<div></div>
       }
+      <div>{viewTransation?<div><AllTransation setViewTransation={setViewTransation} /></div>:<></>}</div>
       {/* <Card cardProduct={listProductCard} /> */}
       <div>
        { loading? <Load loading={loading}/> : <div></div> }
       </div>
       <Routes>
         {/* <Route path='/payment' element={<Pago />}/> */}
-        <Route path='/' element={<Products setAlertGlobal={setAlertGlobal} sendProductCard={setProductCard} setLoad={setLoad} load={loading} />} />
+        <Route path='/' element={<Products setIsPago={setIsPago} isPago={isPago} setAlertGlobal={setAlertGlobal} sendProductCard={setProductCard} setLoad={setLoad} load={loading} />} />
       </Routes>
       </div>
     </>

@@ -1,7 +1,6 @@
 import Product from "../../../model/product/product";
 
 function cardProduct({product, setProduct, setCount, count, setAlertGlobal, productRef}:{product:Product, setProduct:Function, setLoad:Function, load:Boolean, setCount:Function, count:number, setAlertGlobal:Function, productRef:Product}){
-
     function add(){
       const cantidadRef= Number(productRef.cantidad)
       const cantidadProduct= Number(product.cantidad)
@@ -24,6 +23,9 @@ function cardProduct({product, setProduct, setCount, count, setAlertGlobal, prod
       // sendProductCard2((prev:Record<string, Object>) => ({...productCard2, [`${_id}`]:{ ... prev[`${_id}`], cantidad: +product.cantidad }}))
       setCount(((count || 0) + 1))
       setAlertGlobal({status: true, message: `Se agrego ${product?.name} correctamente al carrito`, type: 'green'}) 
+      const dor:any= document.getElementById(productRef._id as string)
+      dor.value= 1
+      
     }
     function changeInputValue(e:React.ChangeEvent<HTMLInputElement>){
         console.log(Number(product.cantidad) < Number(productRef.cantidad))
@@ -32,6 +34,7 @@ function cardProduct({product, setProduct, setCount, count, setAlertGlobal, prod
         product.description= productRef.description
         product.precio= productRef.precio
         let cantidadProduct= Number(e.target.value)
+        console.log(cantidadProduct)
         product.cantidad= cantidadProduct
         if(Number(productRef.cantidad) < 0 || cantidadProduct > Number(productRef.cantidad)){
             console.log("error")
@@ -61,7 +64,7 @@ function cardProduct({product, setProduct, setCount, count, setAlertGlobal, prod
           <strong>Existen: </strong>
           <p>{productRef.cantidad as number}</p>
         </div>
-        <input type="number" min={0} max={productRef.cantidad as number} pattern={`\d{${0},${productRef.cantidad}}`}
+        <input id={productRef._id as string} type="number" min={0} max={productRef.cantidad as number} pattern={`\d{${0},${productRef.cantidad}}`}
         onChange={changeInputValue} placeholder="cantidad"
         className="m-2"
         />

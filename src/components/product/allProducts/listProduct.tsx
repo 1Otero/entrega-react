@@ -2,8 +2,8 @@ import CardProduct from '../cardProduct/CardProduct'
 import Product from '../../../model/product/product'
 import { useEffect, useState } from 'react'
 
-const listCardProduct= new Array()
-function listProduct({sendProductCard, listProduct, setLoad, load, setAlertGlobal }:{sendProductCard:Function, listProduct:Product[], setLoad:Function, load:Boolean, setAlertGlobal:Function}){
+let listCardProduct= new Array()
+function listProduct({sendProductCard, listProduct, setLoad, load, setAlertGlobal, isPago, setIsPago}:{sendProductCard:Function, listProduct:Product[], setLoad:Function, load:Boolean, setAlertGlobal:Function, isPago:Boolean, setIsPago:Function}){
     const [product, setProduct]= useState<Product>({
       _id: '',
       name: '',
@@ -18,7 +18,9 @@ function listProduct({sendProductCard, listProduct, setLoad, load, setAlertGloba
     //   cantidad: 1,
     //   precio: 150000
     // })
-
+   useEffect(() => {
+    if (isPago) listCardProduct= new Array()
+   }, [isPago])
     const [count, setCount]= useState(1)
     useEffect(() => {
 
@@ -59,7 +61,7 @@ function listProduct({sendProductCard, listProduct, setLoad, load, setAlertGloba
     // setProduct((prev:any) => {
     //  return {...prev, _id: '', name: '', description: '', precio: ''}
     // })
-
+    setIsPago(false)
     }, [count])
 
 

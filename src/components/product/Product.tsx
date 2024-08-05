@@ -3,7 +3,7 @@ import ListProduct from './allProducts/listProduct'
 import useProduct from './allProducts/getProducts'
 import Product from "../../model/product/product"
 
-const Products= ({load, setLoad, sendProductCard, setAlertGlobal}:{load:Boolean, setLoad:Function, sendProductCard:Function, setAlertGlobal:Function}) =>{
+const Products= ({load, setLoad, sendProductCard, setAlertGlobal, isPago, setIsPago}:{load:Boolean, setLoad:Function, sendProductCard:Function, setAlertGlobal:Function, isPago:Boolean, setIsPago:Function}) =>{
   function ejecutar(){
     setLoad(!load)
     return
@@ -31,7 +31,7 @@ const Products= ({load, setLoad, sendProductCard, setAlertGlobal}:{load:Boolean,
        </div>
        <div>
         {
-          listProduct!=null && listProduct.length > 0?<ListProduct setAlertGlobal={setAlertGlobal} listProduct={listProduct} sendProductCard={sendProductCard} setLoad={setLoad} load={load} />:<h2>{load?"...":404}</h2>
+          listProduct!=null && listProduct.length > 0?<ListProduct isPago={isPago} setIsPago={setIsPago} setAlertGlobal={setAlertGlobal} listProduct={listProduct} sendProductCard={sendProductCard} setLoad={setLoad} load={load} />:<h2>{load?"...":404}</h2>
         }
        </div>
        <button onClick={ejecutar}>Load</button>
