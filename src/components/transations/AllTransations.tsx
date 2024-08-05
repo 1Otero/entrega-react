@@ -9,7 +9,7 @@ function getLastTransation(){
   return null
 }
 
-function GetTransation({setViewTransation, viewTransation}:{setViewTransation:Function, viewTransation:Boolean}){
+function GetTransation({setViewTransation}:{setViewTransation:Function}){
    const[transation, setTrasation]= useState<{id: string, amount_in_cents: number, reference: string}>() 
    const [moneyincents, setMoneyInCents]= useState("")
    useEffect(() => {
@@ -42,9 +42,7 @@ function GetTransation({setViewTransation, viewTransation}:{setViewTransation:Fu
                   className="font-medium text-center m-2 w-full px-3 py-2 text-sm text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" href={`https://entreganode.netlify.app//pago/gettransation/${transation.id}`}>Ver mi informacion de transaccion</a>
                   </div>
                 </div>  
-                <div onClick={() => {
-                   setViewTransation(false)
-                  }} className="bottom-5 font-medium text-center w-full px-3 py-2 text-sm text-white bg-red-700 rounded-lg hover:red-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                <div onClick={() => setViewTransation(false)} className="bottom-5 font-medium text-center w-full px-3 py-2 text-sm text-white bg-red-700 rounded-lg hover:red-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                   <button >Cerrar</button>
                 </div>
             </div>:<><h2>Loading...</h2></>}

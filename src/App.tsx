@@ -16,7 +16,7 @@ function App() {
   const [showCart, setShowCart]= useState(false)
   const [productCard, setProductCard]= useState<Product[]>([])
   const [alertGlobal, setAlertGlobal]= useState<{status: Boolean, message: String, type: String}>({status: false, message: '', type: ''})
-  const [viewTransation, setViewTransation]= useState(true)
+  const [viewTransation, setViewTransation]= useState(false)
   
   return (
     <>
@@ -35,7 +35,7 @@ function App() {
         <Card setViewTransation={setViewTransation} isPago={isPago} setIsPago={setIsPago} cardProduct={productCard} setLoad={setLoad} setAlertGlobal={setAlertGlobal} setShowCart={setShowCart} setProductCard={setProductCard}/> 
        </div>:<div></div>
       }
-      <div>{viewTransation?<div><AllTransation setViewTransation={setViewTransation} viewTransation={viewTransation}/></div>:<></>}</div>
+      <div>{viewTransation?<div><AllTransation setViewTransation={setViewTransation} /></div>:<></>}</div>
       {/* <Card cardProduct={listProductCard} /> */}
       <div>
        { loading? <Load loading={loading}/> : <div></div> }

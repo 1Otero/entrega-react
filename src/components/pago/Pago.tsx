@@ -80,8 +80,6 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
   }
   
   useEffect(() => {
-    console.log("isPago: ")
-    console.log(isPago)
     if(isPago){
       if(infoTarjeta.toktarjeta && isGoodTok){
         async function puying(){
