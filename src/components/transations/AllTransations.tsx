@@ -29,7 +29,8 @@ function GetTransation({setViewTransation}:{setViewTransation:Function}){
         </div>
         <div className="mt-14">
             {transation?<div>
-                <h2>ID transation</h2>
+                <h2>Pago exitoso</h2>
+                <h3>ID transation</h3>
                 <p>{transation.id}</p>
                 <div>
                     <p>Referencia: {transation.reference}</p>
