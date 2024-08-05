@@ -147,7 +147,7 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
    <div>
     <div>
      <section>
-        <div>
+        <div className=''>
            <h2>User</h2>
            <p>{user.full_name}</p>
            <h2><strong>{user.legal_id_type}</strong></h2>
