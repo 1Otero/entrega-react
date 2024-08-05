@@ -11,9 +11,13 @@ function getLastTransation(){
 
 function GetTransation({setViewTransation, viewTransation}:{setViewTransation:Function, viewTransation:Boolean}){
    const[transation, setTrasation]= useState<{id: string, amount_in_cents: number, reference: string}>() 
+   const [moneyincents, setMoneyInCents]= useState("")
    useEffect(() => {
     async function meTransation(){
         const body= await getLastTransation()
+        const conv= Number(String(body.amount_in_cents).replace(/,/g, ''))
+        const pintar= (conv/ 100).toFixed(2)
+        setMoneyInCents(pintar)
         setTrasation(body)
     }
     meTransation()
@@ -29,7 +33,7 @@ function GetTransation({setViewTransation, viewTransation}:{setViewTransation:Fu
                 <p>{transation.id}</p>
                 <div>
                     <p>Referencia: {transation.reference}</p>
-                    <strong>Monto: {transation.amount_in_cents}</strong>
+                    <strong>Monto: {moneyincents as string}</strong>
                 </div>
                 <div className="mt-14 mb-28">
                   <p>Puede validar su transaccion directamente al API con su ID de transaccion a la ruta: </p>
