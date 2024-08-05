@@ -97,8 +97,8 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
           console.log(bodyPay)
           if(bodyPay.status == 200){
             setProductCard([])
-            setShowCart(false)
             setViewTransation(true)
+            setShowCart(false)
             setIsPago(true)
             const body= bodyPay.success
             console.log(body)
@@ -147,7 +147,7 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
         if(toktarjeta!= undefined && toktarjeta.length > 0){
           setIsGoodTok(true)
           setTokenTarjeta(toktarjeta)
-          setLoad(false)
+          //setLoad(false)
           setAlertGlobal({status: true, message: "Procesando su tarjeta", type: 'orange'})
           return
         }
