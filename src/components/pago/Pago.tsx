@@ -93,15 +93,12 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
           let currency= "COP"
           let cardType= "CARD"
           const bodyPay= await finalizarPago({acceptance_token:acceptConfirm as string, amount_in_cents, currency, customer_data: user, customer_email: email, infoCarrito: {listProduct:infoCarrito}, payment_method: {installments: 1, type: cardType, token: toktarjeta as string}, reference, signature})
-          console.log("bodyPay: ")
-          console.log(bodyPay)
           if(bodyPay.status == 200){
             setProductCard([])
             setViewTransation(true)
             setShowCart(false)
             setIsPago(true)
             const body= bodyPay.success
-            console.log(body)
             localStorage.setItem("transations", JSON.stringify(body))
             setLoad(false)
             setAlertGlobal({status: true, message: "su pago se realizo satisfactoriamente", type: 'green'})
@@ -143,7 +140,6 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
         //   setIsGoodTok(false)
         //   return
         // }
-        console.log(toktarjeta != undefined)
         if(toktarjeta!= undefined && toktarjeta.length > 0){
           setIsGoodTok(true)
           setTokenTarjeta(toktarjeta)

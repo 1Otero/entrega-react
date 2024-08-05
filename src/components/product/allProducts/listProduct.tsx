@@ -24,9 +24,6 @@ function listProduct({sendProductCard, listProduct, setLoad, load, setAlertGloba
     const [count, setCount]= useState(1)
     useEffect(() => {
 
-    console.log(count)
-    console.log(product)
-
     if(Number(product._id.length) > 0){
       if(!listCardProduct.find((p) => p._id == product._id)){
         listCardProduct.push(product)

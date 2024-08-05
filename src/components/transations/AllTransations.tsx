@@ -8,25 +8,20 @@ function getLastTransation(){
   } 
   return null
 }
-function GetTransation({setViewTransation}:{setViewTransation:Function}){
+
+function GetTransation({setViewTransation, viewTransation}:{setViewTransation:Function, viewTransation:Boolean}){
    const[transation, setTrasation]= useState<{id: string, amount_in_cents: number, reference: string}>() 
    useEffect(() => {
     async function meTransation(){
         const body= await getLastTransation()
-        console.log(body)
         setTrasation(body)
     }
     meTransation()
    }, [])
-   function cerrarModal(){
-    setViewTransation(false)
-   }
+  
    return (
     <>
-      <div className='fixed left-0 w-full top-0 bg-gray-200 h-full p-4'> 
-        <div>
-          <button className="font-medium text-center w-full px-3 py-2 text-sm text-white bg-red-700 rounded-lg hover:red-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" onClick={cerrarModal}>Cerrar</button>
-        </div>
+      <div className='fixed left-0 w-full top-1 bg-gray-200 h-full p-4'> 
         <div className="mt-14">
             {transation?<div>
                 <h2>Pago exitoso</h2>
@@ -36,13 +31,18 @@ function GetTransation({setViewTransation}:{setViewTransation:Function}){
                     <p>Referencia: {transation.reference}</p>
                     <strong>Monto: {transation.amount_in_cents}</strong>
                 </div>
-                <div className="mt-14">
+                <div className="mt-14 mb-28">
                   <p>Puede validar su transaccion directamente al API con su ID de transaccion a la ruta: </p>
                   <div className="m-2">
                   <a target="_blank"
-                  className="font-medium text-center m-2 w-full px-3 py-2 text-sm text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" href={`https://entreganode.netlify.app//pago/gettransation/${transation.id}`}>Ver mi informacion transaccion</a>
+                  className="font-medium text-center m-2 w-full px-3 py-2 text-sm text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" href={`https://entreganode.netlify.app//pago/gettransation/${transation.id}`}>Ver mi informacion de transaccion</a>
                   </div>
                 </div>  
+                <div onClick={() => {
+                   setViewTransation(false)
+                  }} className="bottom-5 font-medium text-center w-full px-3 py-2 text-sm text-white bg-red-700 rounded-lg hover:red-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                  <button >Cerrar</button>
+                </div>
             </div>:<><h2>Loading...</h2></>}
         </div>
       </div>

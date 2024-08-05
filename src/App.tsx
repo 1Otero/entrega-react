@@ -35,7 +35,7 @@ function App() {
         <Card setViewTransation={setViewTransation} isPago={isPago} setIsPago={setIsPago} cardProduct={productCard} setLoad={setLoad} setAlertGlobal={setAlertGlobal} setShowCart={setShowCart} setProductCard={setProductCard}/> 
        </div>:<div></div>
       }
-      <div>{viewTransation?<div><AllTransation setViewTransation={setViewTransation} /></div>:<></>}</div>
+      <div>{viewTransation?<div><AllTransation setViewTransation={setViewTransation} viewTransation={viewTransation}/></div>:<></>}</div>
       {/* <Card cardProduct={listProductCard} /> */}
       <div>
        { loading? <Load loading={loading}/> : <div></div> }
