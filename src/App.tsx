@@ -16,7 +16,7 @@ function App() {
   const [showCart, setShowCart]= useState(false)
   const [productCard, setProductCard]= useState<Product[]>([])
   const [alertGlobal, setAlertGlobal]= useState<{status: Boolean, message: String, type: String}>({status: false, message: '', type: ''})
-  const [viewTransation, setViewTransation]= useState(true)
+  const [viewTransation, setViewTransation]= useState(false)
   
   return (
     <>
