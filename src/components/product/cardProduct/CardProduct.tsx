@@ -3,12 +3,46 @@ import Product from "../../../model/product/product";
 function cardProduct({product, setProduct, setCount, count, setAlertGlobal, productRef}:{product:Product, setProduct:Function, setLoad:Function, load:Boolean, setCount:Function, count:number, setAlertGlobal:Function, productRef:Product}){
 
     function add(){
+      const cantidadRef= Number(productRef.cantidad)
+      const cantidadProduct= Number(product.cantidad)
+      if(cantidadRef < 0 || cantidadProduct > cantidadRef){
+        setAlertGlobal({status: true, message: `Supero la cantidad existente de productos no se pudo agregar al carrito`, type: 'red'})
+        return
+      }
+      if(cantidadProduct < 1){
+        console.log("error")
+        setAlertGlobal({status: true, message: `La cantidad seleccionada debe ser superior a 0`, type: 'red'})   
+        return
+      }
+      product._id= productRef._id
+      product.name= productRef.name
+      product.precio= productRef.precio
       setProduct(product)
       // sendProductCard2({...productCard2, [`${_id}`]:product})
       //sendProductCard2((prev:Record<string, Object>) => ({...productCard2, [`${_id}`]:{ ... prev[`${_id}`], cantidad: (prev[`${_id}`].cantidad || 0) +  }}))
       // sendProductCard2((prev:Record<string, Object>) => ({...productCard2, [`${_id}`]:{ ... prev[`${_id}`], cantidad: +product.cantidad }}))
       setCount(((count || 0) + 1))
-      setAlertGlobal({status: true, message: `Se agrego ${product?.name} correctamente al carrito`, type: 'orange'}) 
+      setAlertGlobal({status: true, message: `Se agrego ${product?.name} correctamente al carrito`, type: 'green'}) 
+    }
+    function changeInputValue(e:React.ChangeEvent<HTMLInputElement>){
+        console.log(Number(product.cantidad) < Number(productRef.cantidad))
+        product._id= productRef._id
+        product.name= productRef.name
+        product.description= productRef.description
+        product.precio= productRef.precio
+        let cantidadProduct= Number(e.target.value)
+        product.cantidad= cantidadProduct
+        if(Number(productRef.cantidad) < 0 || cantidadProduct > Number(productRef.cantidad)){
+            console.log("error")
+            setAlertGlobal({status: true, message: `La cantidad seleccionada supera el stock en la tienda`, type: 'red'})
+            //product.cantidad= 0
+        }
+        //const cantidadProduct= Number(product.cantidad)
+        if(cantidadProduct < 1){
+            console.log("error")
+            setAlertGlobal({status: true, message: `La cantidad seleccionada debe ser superior a 0`, type: 'red'})   
+            return
+          }
     }
     return <>
      <div>
@@ -27,14 +61,9 @@ function cardProduct({product, setProduct, setCount, count, setAlertGlobal, prod
           <p>{productRef.cantidad as number}</p>
         </div>
         <input type="number" min={0} max={productRef.cantidad as number} pattern={`\d{${0},${productRef.cantidad}}`}
-        onChange={(e) => {
-          product._id= productRef._id
-          product.name= productRef.name
-          product.description= productRef.description
-          product.precio= productRef.precio
-          product.cantidad= Number(e.target.value)
-        }} placeholder="cantidad"
+        onChange={changeInputValue} placeholder="cantidad"
         className="m-2"
+        value={product.cantidad as number}
         />
         <a onClick={add} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Agregar al carrito

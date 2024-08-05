@@ -80,7 +80,7 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
   }
   
   useEffect(() => {
-    if(infoTarjeta.toktarjeta){
+    if(infoTarjeta.toktarjeta && isGoodTok){
       async function puying(){
         //let {acceptConfirm, email, toktarjeta, cvc, expiry, focus, name, number}= Object.assign(state, infoTarjeta)
         let {acceptConfirm, email, toktarjeta }= Object.assign(state, infoTarjeta)
@@ -97,13 +97,16 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
           setProductCard([])
           return
         }
-        setShowCart(false)
         setLoad(false)
+        //setShowCart(false)
         setAlertGlobal({status: true, message: bodyPay.success, type: 'red'})
         return
       }
       puying()
     }
+    console.log("info tar: ")
+    console.log(infoTarjeta)
+    setAlertGlobal({status: true, message: "Error con la tarjeta", type: 'red'})
   }, [tokenTarjeta])
 
   const sendPago = () => {
@@ -121,6 +124,8 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
         if(!toktarjeta || toktarjeta.length < 0){
           setIsGoodTok(false)
         }
+        console.log("tokenizando")
+        console.log(toktarjeta)
         setIsGoodTok(true)
         setTokenTarjeta(toktarjeta)
       }
@@ -158,15 +163,15 @@ function Pago({infoTarjeta, setInfoTarjeta, infoCarrito, setLoad, setAlertGlobal
     <div>
       <h2>Pagar con:</h2>
     </div>
-    <div className='flex flex-wrap justify-center bg-blue-500'>
+    <div onClick={() => setIsTarjeta(!isTarjeta)} className='flex flex-wrap justify-center bg-blue-500'>
      {/* <h2 className='m-1'>Pagar con</h2>  */}
      <div className='m-2'>
-     <button onClick={() => setIsTarjeta(!isTarjeta)}> 
+     <div> 
        <div className='flex flex-wrap justify-center p-1'>
         <img src="/visa.svg" height="32px" width="32px" alt="visa"/>
         <img width="32px" src="/mastercard.svg" alt="mastercard" />
        </div>
-     </button>
+     </div>
      </div>
     </div>
     </div>

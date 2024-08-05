@@ -8,7 +8,7 @@ function listProduct({sendProductCard, listProduct, setLoad, load, setAlertGloba
       _id: '',
       name: '',
       description: '',
-      cantidad: 1,
+      cantidad: 0,
       precio: 150000
     })
     // const [productRef, setProductRef]= useState<Product>({
@@ -21,11 +21,16 @@ function listProduct({sendProductCard, listProduct, setLoad, load, setAlertGloba
 
     const [count, setCount]= useState(1)
     useEffect(() => {
+
+    console.log(count)
+    console.log(product)
+
     if(Number(product._id.length) > 0){
       if(!listCardProduct.find((p) => p._id == product._id)){
         listCardProduct.push(product)
       }else{
        listCardProduct.forEach(p => {
+        console.log(p)
         if(p._id == product._id){
           p.cantidad= (p.cantidad || 0) + product.cantidad
         }
@@ -49,8 +54,11 @@ function listProduct({sendProductCard, listProduct, setLoad, load, setAlertGloba
       name: '',
       description: '',
       cantidad: 1,
-      precio: 150000
+      precio: 0
     })
+    // setProduct((prev:any) => {
+    //  return {...prev, _id: '', name: '', description: '', precio: ''}
+    // })
 
     }, [count])
 
