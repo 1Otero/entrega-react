@@ -25,7 +25,7 @@ function App() {
        <Head />
       </div>
       <button onClick={() => setShowCart(!showCart)} className={`${!showCart?"bg-green-400":"bg-red-500"} p-2`}>
-       <div className='font-semibold text-white'>{showCart?<div><p className='w-2/3'>Hide cart {productCard.length}</p><img className='w-2/3' src='/ocultarobajar.svg'/></div>:<div><p>View cart {productCard.length} </p><img rel="stylesheet" src="/cart.svg"/></div>}</div>
+       <div className='font-semibold text-white'>{showCart?<div><p className='w-2/3'>Hide cart</p><div className='flex'><img className='w-2/3' src='/ocultarobajar.svg'/></div></div>:<div><p>View cart</p><div className='flex'><img rel="stylesheet" src="/cart.svg"/>{productCard.length}</div></div>}</div>
       </button>
       <div className='w-full top-4 fixed left-0 h-12 bg-transparent float-right z-30'>
        <AlertGlobal infoAlert={alertGlobal} setAlertGlobal={setAlertGlobal} />
